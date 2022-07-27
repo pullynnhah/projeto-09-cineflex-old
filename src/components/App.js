@@ -1,4 +1,7 @@
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+
 import styled from "styled-components";
+import Home from "./Home";
 
 export default function App() {
   const URI = "https://mock-api.driven.com.br/api/v5/cineflex";
@@ -7,6 +10,11 @@ export default function App() {
       <Header>
         <h1>Cineflex</h1>
       </Header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home uri={URI} />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
