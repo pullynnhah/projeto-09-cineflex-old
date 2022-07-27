@@ -1,11 +1,8 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
 import axios from "axios";
 
 import Page from "./utils/Page";
 import Title from "./utils/Title";
-import Button from "./utils/Button";
-import styled from "styled-components";
 import Load from "./utils/Load";
 import Sessions from "./Sessions";
 
@@ -15,7 +12,7 @@ export default function SessionPage({uri, movieID, setSessionID}) {
   useEffect(() => {
     const promise = axios.get(`${uri}/movies/${movieID}/showtimes`);
     promise.then(response => setSessions(response.data));
-  }, [uri]);
+  }, [uri, movieID]);
 
   if (sessions === null) {
     return <Load />;
