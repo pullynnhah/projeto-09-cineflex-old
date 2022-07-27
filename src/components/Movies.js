@@ -1,21 +1,21 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
-function Movie({id, posterURL}) {
+function Movie({id, posterURL, setMovieID}) {
   return (
     <MovieCard>
       <Link to={`/sessoes/${id}`}>
-        <img src={posterURL} alt="movie poster" />
+        <img src={posterURL} alt="movie poster" onClick={() => setMovieID(id)} />
       </Link>
     </MovieCard>
   );
 }
 
-export default function Movies({movies}) {
+export default function Movies({movies, setMovieID}) {
   return (
     <ContainerMovies>
       {movies.map((movie, index) => (
-        <Movie {...movie} key={index} />
+        <Movie {...movie} key={index} setMovieID={setMovieID} />
       ))}
     </ContainerMovies>
   );

@@ -1,10 +1,15 @@
+import {useState} from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 import styled from "styled-components";
-import Home from "./Home";
+import HomePage from "./HomePage";
+import SessionPage from "./SessionPage";
 
 export default function App() {
   const URI = "https://mock-api.driven.com.br/api/v5/cineflex";
+
+  const [movieID, setMovieID] = useState(null);
+  const [sessionID, setSessionID] = useState(null);
   return (
     <>
       <Header>
@@ -12,7 +17,11 @@ export default function App() {
       </Header>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home uri={URI} />} />
+          <Route path="/" element={<HomePage uri={URI} setMovieID={setMovieID} />} />
+          <Route
+            path="/sessoes/:idMovie"
+            element={<SessionPage uri={URI} movieID={movieID} setSessionID={setSessionID} />}
+          />
         </Routes>
       </BrowserRouter>
     </>
