@@ -12,7 +12,7 @@ const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    transform: scale(0.95);
+    transform: translate(2px);
     background: #e7a87b;
   }
 `;

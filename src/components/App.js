@@ -7,12 +7,7 @@ import SessionPage from "./SessionPage";
 import SeatsPage from "./SeatsPage";
 
 export default function App() {
-  const URI = "https://mock-api.driven.com.br/api/v5/cineflex";
-
-  const [movieID, setMovieID] = useState(null);
-  const [sessionID, setSessionID] = useState(null);
-  const [seatID, setSeatID] = useState(null);
-
+  const URI = "https://mock-api.driven.com.br/api/v7/cineflex";
   return (
     <>
       <Header>
@@ -20,15 +15,9 @@ export default function App() {
       </Header>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage uri={URI} setMovieID={setMovieID} />} />
-          <Route
-            path="/sessoes/:idMovie"
-            element={<SessionPage uri={URI} movieID={movieID} setSessionID={setSessionID} />}
-          />
-          <Route
-            path="/assentos/:idSession"
-            element={<SeatsPage uri={URI} sessionID={sessionID} setSeatID={setSeatID} />}
-          />
+          <Route path="/" element={<HomePage uri={URI} />} />
+          <Route path="/sessoes/:idMovie" element={<SessionPage uri={URI} />} />
+          <Route path="/assentos/:idSession" element={<SeatsPage uri={URI} />} />
         </Routes>
       </BrowserRouter>
     </>

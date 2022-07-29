@@ -6,7 +6,7 @@ import Load from "./utils/Load";
 import Movies from "./Movies";
 import Page from "./utils/Page";
 
-export default function HomePage({uri, setMovieID}) {
+export default function HomePage({uri}) {
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function HomePage({uri, setMovieID}) {
       <Title color="#293845" weight={400}>
         <h2>Selecione o filme</h2>
       </Title>
-      <Movies movies={movies} setMovieID={setMovieID} />
+      <Movies movies={movies} />
     </Page>
   );
 }

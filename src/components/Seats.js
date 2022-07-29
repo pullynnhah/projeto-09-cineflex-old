@@ -85,7 +85,7 @@ const SeatCard = styled.div`
 
   background: ${props => props.color};
   border: 1px solid ${props => props.borderColor};
-  border-radius: 50%;
+  border-radius: 46%;
 
   p {
     font-size: 11px;
