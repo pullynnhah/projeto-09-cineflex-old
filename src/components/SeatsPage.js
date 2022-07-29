@@ -9,7 +9,6 @@ import {useParams} from "react-router-dom";
 
 export default function SeatsPage({uri}) {
   const [seats, setSeats] = useState(null);
-
   const {idSession} = useParams();
   useEffect(() => {
     const promise = axios.get(`${uri}/showtimes/${idSession}/seats`);
@@ -25,7 +24,6 @@ export default function SeatsPage({uri}) {
         <h2>Selecione o(s) assento(s)</h2>
       </Title>
       <Seats seats={seats.seats} />
-      <BuyersInputs />
     </Page>
   );
 }
