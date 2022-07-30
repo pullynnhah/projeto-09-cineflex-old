@@ -5,16 +5,32 @@ const availableSettings = {color: "#C3CFD9", borderColor: "#7B8B99", cursor: "po
 const unavailableSettings = {color: "#FBE192", borderColor: "#F7C52B", cursor: "initial"};
 const selectedSettings = {color: "#8DD7CF", borderColor: "#1AAE9E", cursor: "pointer", type: 1};
 
-function Seat({name, isAvailable}) {
+function Seat({name, id, isAvailable, orderSeats, setOrderSeats, buyers, setBuyers}) {
   const [settings, setSettings] = useState(isAvailable ? availableSettings : unavailableSettings);
 
   function selectSeat() {
     if (isAvailable) {
+      const newOrderSeats = new Set(orderSeats);
       if (settings.type === 0) {
         setSettings(selectedSettings);
+        newOrderSeats.add(name);
       } else {
         setSettings(availableSettings);
+        if (buyers[id]?.name || buyers[id]?.cpf) {
+          if (window.confirm(`Deseja deletar dados do assento ${name}?`)) {
+            const newBuyers = {...buyers};
+            delete newBuyers[id];
+            setBuyers(newBuyers);
+            newOrderSeats.delete(name);
+          }
+        } else {
+          const newBuyers = {...buyers};
+          delete newBuyers[id];
+          setBuyers(newBuyers);
+          newOrderSeats.delete(name);
+        }
       }
+      setOrderSeats(newOrderSeats);
     } else {
       alert("Esse assento não está disponível");
     }
@@ -27,7 +43,7 @@ function Seat({name, isAvailable}) {
   );
 }
 
-export default function Seats({seats, setOrder}) {
+export default function Seats({seats, orderSeats, setOrderSeats, buyers, setBuyers}) {
   const settings = [
     {setting: selectedSettings, text: "Selecionado"},
     {setting: availableSettings, text: "Disponível"},
@@ -37,7 +53,14 @@ export default function Seats({seats, setOrder}) {
     <>
       <SeatsContainer>
         {seats.map((seat, index) => (
-          <Seat {...seat} key={index} />
+          <Seat
+            {...seat}
+            key={index}
+            orderSeats={orderSeats}
+            buyers={buyers}
+            setBuyers={setBuyers}
+            setOrderSeats={setOrderSeats}
+          />
         ))}
       </SeatsContainer>
       <ChoicesContainer>
