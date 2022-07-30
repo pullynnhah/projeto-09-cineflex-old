@@ -1,17 +1,17 @@
 import {Link} from "react-router-dom";
-import Button from "./utils/Button";
+import Button from "./common/Button";
 import styled from "styled-components";
 
-function Session({weekday, date, showtimes, setSessionID}) {
+function Session({weekday, date, showtimes}) {
   return (
     <SessionCard>
       <p>
         {weekday} - {date}
       </p>
       <div className="btns">
-        {showtimes.map(showtime => (
-          <Link to={`/assentos/${showtime.id}`}>
-            <Button onClick={() => setSessionID(showtime.id)}>{showtime.name}</Button>
+        {showtimes.map((showtime, index) => (
+          <Link to={`/assentos/${showtime.id}`} key={index}>
+            <Button>{showtime.name}</Button>
           </Link>
         ))}
       </div>
@@ -19,11 +19,11 @@ function Session({weekday, date, showtimes, setSessionID}) {
   );
 }
 
-export default function Sessions({sessions, setSessionID}) {
+export default function Sessions({sessions}) {
   return (
     <ContainerSessions>
       {sessions.map((session, index) => (
-        <Session key={index} {...session} setSessionID={setSessionID} />
+        <Session key={index} {...session} />
       ))}
     </ContainerSessions>
   );

@@ -9,18 +9,16 @@ import SeatsPage from "./SeatsPage";
 export default function App() {
   const URI = "https://mock-api.driven.com.br/api/v7/cineflex";
   return (
-    <>
+    <BrowserRouter>
       <Header>
         <h1>Cineflex</h1>
       </Header>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage uri={URI} />} />
-          <Route path="/sessoes/:idMovie" element={<SessionPage uri={URI} />} />
-          <Route path="/assentos/:idSession" element={<SeatsPage uri={URI} />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+      <Routes>
+        <Route path="/" element={<HomePage uri={URI} />} />
+        <Route path="/sessoes/:idMovie" element={<SessionPage uri={URI} />} />
+        <Route path="/assentos/:idSession" element={<SeatsPage uri={URI} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

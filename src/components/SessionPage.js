@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-import Page from "./utils/Page";
-import Title from "./utils/Title";
-import Load from "./utils/Load";
+import Page from "./common/Page";
+import Title from "./common/Title";
+import Load from "./common/Load";
 import Sessions from "./Sessions";
 import {useParams} from "react-router-dom";
 

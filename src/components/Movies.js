@@ -5,17 +5,17 @@ function Movie({id, posterURL, setMovieID}) {
   return (
     <MovieCard>
       <Link to={`/sessoes/${id}`}>
-        <img src={posterURL} alt="movie poster" onClick={() => setMovieID(id)} />
+        <img src={posterURL} alt="movie poster" />
       </Link>
     </MovieCard>
   );
 }
 
-export default function Movies({movies, setMovieID}) {
+export default function Movies({movies}) {
   return (
     <ContainerMovies>
       {movies.map((movie, index) => (
-        <Movie {...movie} key={index} setMovieID={setMovieID} />
+        <Movie {...movie} key={index} />
       ))}
     </ContainerMovies>
   );

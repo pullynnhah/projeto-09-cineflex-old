@@ -5,7 +5,7 @@ const availableSettings = {color: "#C3CFD9", borderColor: "#7B8B99", cursor: "po
 const unavailableSettings = {color: "#FBE192", borderColor: "#F7C52B", cursor: "initial"};
 const selectedSettings = {color: "#8DD7CF", borderColor: "#1AAE9E", cursor: "pointer", type: 1};
 
-function Seat({id, name, isAvailable}) {
+function Seat({name, isAvailable}) {
   const [settings, setSettings] = useState(isAvailable ? availableSettings : unavailableSettings);
 
   function selectSeat() {
@@ -27,7 +27,7 @@ function Seat({id, name, isAvailable}) {
   );
 }
 
-export default function Seats({seats, setSeatID}) {
+export default function Seats({seats, setOrder}) {
   const settings = [
     {setting: selectedSettings, text: "Selecionado"},
     {setting: availableSettings, text: "Disponível"},
@@ -37,13 +37,13 @@ export default function Seats({seats, setSeatID}) {
     <>
       <SeatsContainer>
         {seats.map((seat, index) => (
-          <Seat {...seat} key={index} setSeatID={setSeatID} />
+          <Seat {...seat} key={index} />
         ))}
       </SeatsContainer>
       <ChoicesContainer>
         {settings.map((setting, index) => (
-          <div>
-            <SeatCard {...setting.setting} key={index} />
+          <div key={index}>
+            <SeatCard {...setting.setting} />
             <p>{setting.text}</p>
           </div>
         ))}
@@ -60,11 +60,10 @@ const SeatsContainer = styled.section`
 `;
 
 const ChoicesContainer = styled.section`
-  margin-top: 16px;
+  margin-top: 40px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  gap: 10px;
 
   div {
     display: flex;
